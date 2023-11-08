@@ -252,7 +252,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song); //song.pause(); //optional
+  // stopAudio(song);
   clearInterval(timer);
   time = 0;
   // remove all other timeouts in order to
@@ -267,6 +267,7 @@ function stopGame(){
     }
   );
   window.alert("game stopped!");
+  song.pause(); //optional
   return "game stopped";
 }
 
@@ -282,8 +283,9 @@ function startGame(){
     stopGame();
   }
   // skipped here - we'll start music at the very beginning
-  //song.loop = true;
-  //song.play();
+  song.loop = true;
+  song.play();
+  song.currentTime = 30;
   clearScore();
   setDuration(10);
   startTimer();
@@ -291,9 +293,6 @@ function startGame(){
   //return "game started";
 }
 
-song.loop = true;
-song.play();
-song.currentTime = 30;
 startButton.addEventListener("click", startGame);
 setEventListeners()
 
